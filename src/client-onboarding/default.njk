@@ -1,0 +1,10 @@
+---
+layout: layouts/client-onboarding.njk
+pagination:
+    data: clients
+    size: 1
+    alias: client
+eleventyComputed:
+  yoastHead: "{{ client.yoast|safe }}"
+permalink: /onboarding/{{ client.slug }}/index.html
+---

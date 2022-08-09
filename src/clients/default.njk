@@ -1,0 +1,10 @@
+---
+layout: layouts/client-portal.njk
+pagination:
+    data: clients
+    size: 1
+    alias: client
+eleventyComputed:
+  yoastHead: "{{ client.yoast|safe }}"
+permalink: /clients/{{ client.slug }}/index.html
+---

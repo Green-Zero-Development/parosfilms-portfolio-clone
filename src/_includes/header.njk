@@ -1,0 +1,238 @@
+{% set logos = [] %}
+{% set address = [] %}
+{% set phone = [] %}
+{% set email = [] %}
+{% set social = [] %}
+{% for item in globalData %}
+    {% if item.title == "Logos" %}
+        {% set logos = (logos.push({id: item.id, title: item.title, acf: item.acf}), logos) %}
+    {% elseif item.title == "Social Media Links" %}
+        {% set social = (social.push({id: item.id, title: item.title, acf: item.acf}), social) %}
+    {% elseif item.title == "Physical Addresses" %}
+        {% set address = (address.push({id: item.id, title: item.title, acf: item.acf}), address) %}
+    {% elseif item.title == "Contact Numbers" %}
+        {% set phone = (phone.push({id: item.id, title: item.title, acf: item.acf}), phone) %}
+    {% elseif item.title == "Emails" %}
+        {% set email = (email.push({id: item.id, title: item.title, acf: item.acf}), email) %}
+    {% endif %}
+{% endfor %}
+
+<style>
+    
+</style>
+
+<header x-data="{ mobileMenuTrig: false, megaMenuTrig: false }" class="relative z-50">
+    <div id="mega-menu" class="fixed w-full pb-48 px-12 z-50 overflow-y-scroll mega-menu" x-show="megaMenuTrig" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+        <div class="flex items-center justify-between py-8 xl:py-2">
+            <a href="/">
+                <img class="scroll-menu-logo" src="{{ logos[0].acf.light_logo.url }}" />
+            </a>
+            <svg id="mega-trig-off" class="hover:cursor-pointer mega-trig-off" x-on:click="megaMenuTrig = ! megaMenuTrig" width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 32.7434L32.9999 1.74353" stroke="#EADFD7" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M2 1.74377L32.9999 32.7437" stroke="#EADFD7" stroke-width="3" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="grid grid-cols-12 pt-24 mega-menu-max-width">
+            <ul class="col-span-12 xl:col-span-2 list-none">
+                {% for item in menus.megaMenu %}
+                    {% if loop.index < 4 %}
+                    <li class="pb-3">
+                        <a href="{{ item.url }}" class="mega-menu-item">
+                            {{ item.title }}
+                        </a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul class="col-span-7 xl:col-span-4 pt-8 lg:pt-0 list-none">
+                {% for item in menus.megaMenu %}
+                    {% if loop.index == 4 %}
+                        <li class="">
+                            <a href="{{ item.url }}" class="mega-menu-title">{{ item.title }}</a>
+                            <ul class="pt-2">
+                                {% for item1 in item.children %}
+                                    <li class="">
+                                        <a href="{{ item.url }}" class="mega-menu-lg-item">
+                                            {{ item1.title }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                {% endfor %}
+            </ul>
+            <ul class="col-span-5 xl:col-span-2 list-none">
+                {% for item in menus.megaMenu %}
+                    {% if loop.index == 5 %}
+                        <li class="">
+                            <a href="{{ item.url }}" class="mega-menu-title">{{ item.title }}</a>
+                            <ul class="pt-2">
+                                {% for item1 in item.children %}
+                                    <li class="">
+                                        <a href="{{ item.url }}" class="mega-menu-lg-item">
+                                            {{ item1.title }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                {% endfor %}
+                <div class="flex pt-8 lg:pt-0">
+                    <a href="{% for item in social[0].acf.value_list %}{% if item.type == 'Instagram' %}{{ item.value }}{% endif %}{% endfor %}" target="_blank">
+                        <svg class="w-8 mr-4" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    </a>
+                    <a href="{% for item in social[0].acf.value_list %}{% if item.type == 'Facebook' %}{{ item.value }}{% endif %}{% endfor %}" target="_blank">
+                        <svg class="w-8" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"/></svg>
+                    </a>
+                </div>
+            </ul>
+            <div class="col-span-6 xl:col-span-3 pt-8 lg:pt-0">
+                <address class="pb-12">
+                    <a href="https://goo.gl/maps/CVf7MrL1GKSYZMLv7" target="_blank" class="mega-menu-item">
+                        {% for item in address[0].acf.value_list %}{% if item.type == 'Headquarters' %}
+                            {{ item.street }}
+                            <br />
+                            {{ item.city }}, {{ item.state }} {{ item.zip }}
+                        {% endif %}{% endfor %}
+    
+                    </a>
+                </address>
+                <a href="mailto:{% for item in email[0].acf.value_list %}{% if item.type == 'Primary' %}{{ item.value }}{% endif %}{% endfor %}" class="mega-menu-item">
+                    {% for item in email[0].acf.value_list %}{% if item.type == 'Primary' %}{{ item.value }}{% endif %}{% endfor %}
+                </a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="fixed flex items-center justify-between w-full py-8 xl:py-2 px-12 scroll-menu header-scroll-translate">
+        <a href="/">
+            <img class="scroll-menu-logo" src="{{ logos[0].acf.dark_logo.url }}" />
+        </a>
+        <svg id="mega-trig" class="hover:cursor-pointer mega-trig" x-on:click="megaMenuTrig = ! megaMenuTrig" :class="{ 'hidden': megaMenuTrig }" width="60" height="16" viewBox="0 0 60 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="13" width="56" height="3" fill="#942308"/>
+            <rect width="60" height="2.90909" fill="#942308"/>
+        </svg>
+    </div>
+    <div class="grid grid-cols-4 items-center">
+        <a href="/" class="col-span-4 md:col-span-3">
+            <img src="{{ logos[0].acf.dark_logo.url }}" />
+        </a>
+        <ul class="hidden md:block list-none pr-4 lg:pr-16 desktop-nav">
+            {% for item in menus.mainMenu %}
+            <li class="pb-1 lg:pb-3">
+                <a href="{{ item.url }}" class="desktop-nav-item">{{ item.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- <div id="header-container" class="flex flex-wrap w-full h-20 md:h-auto py-4 px-6 lg:px-16 header-container" x-data="{ {% for item in menus.mainMenu %}{% if item.children|length %}dropdown{{ item.ID }}: false, {% endif %}{% endfor %}dropdown: false }">
+        <div class="flex flex-wrap items-center w-full max-w-8xl mx-auto">
+            <div class="w-full md:w-1/3">
+                <a href="/">
+                    <img class="hidden md:block mx-auto site-logo" src="{{ logos[0].acf.logo.url }}" />
+                </a>
+                <a href="/">
+                    <img class="md:hidden mx-auto site-mobile-logo" src="{{ logos[0].acf.logo.url }}" />
+                </a>
+            </div>
+            <ul class="hidden relative md:flex w-2/3">
+                {% for item in menus.mainMenu %}
+                    {% if item.children|length %}
+                        <li class="relative py-2 mr-10 li-with-drop menu-item {% if loop.last == true %}menu-last{% endif %}" @mouseover="dropdown{{ item.ID }} = true" @click="dropdown{{ item.ID }} = true" @mouseleave="dropdown{{ item.ID }} = false">
+                            <a href="{{ item.url }}" class="{% if loop.first %}ml-auto{% endif %}">{{ item.title }}</a><i class="pt-1 fas fa-angle-down"></i>
+                            <ul class="absolute left-0 flex w-full mt-2 dropdown" x-show="dropdown{{ item.ID }}" x-transition x-cloak>
+                                {% for item1 in item.children %}
+                                    <a class="" href="{{ item1.url }}">
+                                        <li class="li-in-drop menu-item">
+                                            {{ item1.title }}
+                                        </li>
+                                    </a>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% else %}
+                    <a href="{{ item.url }}" class="{% if loop.first %}ml-auto{% endif %}">
+                        <li class="py-2 {% if loop.last !== true %}mr-10{% endif %} li-no-drop menu-item {% if loop.last == true %}menu-last{% endif %}">
+                            {{ item.title }}
+                        </li>
+                    </a>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div> -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen z-50 overflow-scroll mobile-menu" x-show="mobileMenuTrig" x-cloak x-data="{ {% for item in menus.mobileMenu %}{% if item.children|length %}dropdown{{ item.ID }}: false, {% endif %}{% endfor %}dropdown: false }" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-110" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300 scale-100" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-110">
+        <ul id="mobile-items" class="flex flex-wrap w-full align-text-top pt-6 pb-48 px-6 sm:px-16 overflow-scroll mobile-items">
+            <a href="/" class="">
+                <img class="w-full py-4" src="{{ logos[0].acf.mobile_menu_logo.url }}" />
+            </a>
+            {% for item in menus.mobileMenu %}
+            {% if item.children|length %}
+                <li class="relative flex flex-wrap w-full justify-between pt-6 pb-4 mobile-menu-single mobile-menu-with-children" x-on:click="dropdown{{ item.ID }} = !dropdown{{ item.ID }}">
+                    {{ item.title }}<i class="text-xl ml-auto mobile-children-icon fas fa-angle-down" :class="{ 'mobile-icon-active': dropdown{{ item.ID }} }"></i>
+                    <ul class="w-full" x-show="dropdown{{ item.ID }}" x-transition x-cloak>
+                        {% for item1 in item.children %}
+                        <a class="w-full pt-6 pb-4" href="{{ item1.url }}">
+                            <li class="pb-2">{{ item1.title }}</li>
+                        </a>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% else %}
+                <a class="w-full" href="{{ item.url }}">
+                    <li class="pt-6 pb-4 mobile-menu-single">{{ item.title }}</li>
+                </a>
+            {% endif %}
+            {% endfor %}
+            <div class="flex w-full pt-8">
+                <a href="{% for item in social[0].acf.value_list %}{% if item.type == 'Instagram' %}{{ item.value }}{% endif %}{% endfor %}" target="_blank">
+                    <svg class="w-8 mr-6" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                </a>
+                <a href="{% for item in social[0].acf.value_list %}{% if item.type == 'Facebook' %}{{ item.value }}{% endif %}{% endfor %}" target="_blank">
+                    <svg class="w-8" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"/></svg>
+                </a>
+            </div>
+            <div class="pt-8">
+                <address class="pb-6">
+                    <a href="https://goo.gl/maps/CVf7MrL1GKSYZMLv7" target="_blank" class="mega-menu-item">
+                        {% for item in address[0].acf.value_list %}{% if item.type == 'Headquarters' %}
+                            {{ item.street }}
+                            <br />
+                            {{ item.city }}, {{ item.state }} {{ item.zip }}
+                        {% endif %}{% endfor %}
+                    </a>
+                </address>
+                <a href="tel:{% for item in phone[0].acf.value_list %}{% if item.type == 'Primary' %}{{ item.value }}{% endif %}{% endfor %}" class="mega-menu-item">
+                    {% for item in phone[0].acf.value_list %}{% if item.type == 'Primary' %}{{ item.value }}{% endif %}{% endfor %}
+                </a>
+                <br />
+                <a href="mailto:{% for item in email[0].acf.value_list %}{% if item.type == 'Primary' %}{{ item.value }}{% endif %}{% endfor %}" class="mega-menu-item">
+                    {% for item in email[0].acf.value_list %}{% if item.type == 'Primary' %}{{ item.value }}{% endif %}{% endfor %}
+                </a>
+            </div>
+        </ul>
+    </div>
+    <img id="mobile-menu-open" class="fixed md:hidden w-12 bottom-0 left-0 right-0 mb-12 mx-auto mobile-menu-open" x-on:click="mobileMenuTrig = ! mobileMenuTrig" :class="{ 'hidden': mobileMenuTrig }" src="https://inside.parosfilms.com/wp-content/uploads/2022/03/Mobile-Hamburger.svg" />
+    <img id="mobile-menu-close" class="fixed md:hidden w-12 bottom-0 left-0 right-0 mb-12 mx-auto mobile-menu-close" x-on:click="mobileMenuTrig = ! mobileMenuTrig" :class="{ 'hidden': !mobileMenuTrig }" src="https://inside.parosfilms.com/wp-content/uploads/2022/05/close-mobile-menu.png" x-cloak />
+</header>
+
+<style>
+    .ani-splash {
+        margin-left: -5px;
+    }
+</style>
+
+<!-- <div class="absolute top-0 flex flex-wrap w-full h-full z-50 overflow-hidden pointer-events-none">
+    <div class="grid grid-cols-4 overflow-hidden">
+        <img class="col-span-4 md:col-span-3 overflow-hidden ani-splash" src="{{ logos[0].acf.light_logo.url }}" />
+    </div>
+</div> -->
+
+<script>
+gsap.set(".ani-splash", { opacity: 1 });
+
+let splashAni = gsap.timeline();
+splashAni.to(".ani-splash", {opacity: 0, x: 15, ease: "sine", duration: 2}, )
+</script>

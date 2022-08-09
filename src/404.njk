@@ -1,0 +1,9 @@
+---
+layout: base.njk
+eleventyComputed:
+  yoastHead: "{{ homePage[0].yoast|safe }}"
+permalink: 404.html
+eleventyExcludeFromCollections: true
+---
+
+{% include "pages/404.njk" %}

@@ -1,0 +1,16 @@
+<style>
+    .privacy-policy {
+        font-family: 'Newsreader', serif;
+        font-weight: 100;
+    }
+    .privacy-policy ul {
+        list-style: disc;
+    }
+    .privacy-policy a {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="relative max-w-6xl mx-auto pt-32 px-6 z-30 privacy-policy">
+    <div class="leading-loose whitespace-pre-line">{{ wpage.acf.policy_text | safe }}</div>
+</div>

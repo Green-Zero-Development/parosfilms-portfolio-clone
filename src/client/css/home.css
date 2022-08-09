@@ -1,0 +1,346 @@
+.card.active {
+	flex-grow: 10;
+	margin: 0;
+	max-width: 100%;
+}
+
+.card.active .label .content > * {
+    opacity: 1;
+    transition-duration: 0.25s;
+}
+
+.transition-base {
+	transition-duration: 700ms;
+	transition-property: all;
+	transition-timing-function: cubic-bezier(0.2, 1, 0.25, 1);
+}
+
+.hero-video-box {
+	height: 804px;
+}
+
+.hero-video {
+	object-fit: cover;
+	height: 804px;
+	max-height: 804px;
+}
+
+.home-slider-section {
+	max-width: 1250px;
+}
+
+.wedding-slider {
+	background-color: #942308;
+}
+
+.wedding-slider-title {
+	background-color: #942308;
+	color: #EADFD7;
+}
+
+.swiper-pagination-bullets {
+	top: 0px !important;
+	right: 0px !important;
+	transform: none !important;
+}
+
+.swiper-pagination-bullet {
+	width: 40px;
+	height: 2px;
+	background-color: #942308;
+	border-radius: 0px;
+	opacity: 1;
+	margin-bottom: 20px !important;
+	margin-left: auto !important;
+	transition: 0.25s;
+}
+
+.swiper-pagination-bullet-active {
+	width: 48px;
+	transition: 0.25s;
+}
+
+.swiper-slide {
+	width: 100% !important;
+}
+
+.swiper-slide-active {
+	opacity: 1 !important;
+}
+
+.swiper-slide-next {
+	opacity: 0 !important;
+}
+
+.slider-poster-image {
+	min-height: 158px;
+	max-height: 158px;
+}
+
+.swiper-fraction {
+	font-family: 'commuters-sans', sans-serif;
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #942308;
+	letter-spacing: 1.2px;
+	line-height: 2;
+}
+
+.wedding-slider-bullets-button {
+	font-family: 'commuters-sans', sans-serif;
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	color: #942308;
+	letter-spacing: 1.2px;
+	line-height: 1.1;
+}
+
+.package-section {
+	max-width: 88rem;
+}
+
+.package-num {
+	font-family: 'Newsreader', serif;
+	font-size: 24px;
+	font-style: italic;
+}
+
+.package-name {
+	font-family: 'commuters-sans', sans-serif;
+	font-size: 14px;
+	width: auto;
+	padding-left: 0px;
+	letter-spacing: 4px;
+}
+
+.package-box {
+   width: 100%;
+}
+
+.package-title-box {
+   width: 100%;
+}
+
+.package-description {
+	font-family: 'Newsreader', serif;
+	font-weight: 100;
+}
+
+.testimonial-slider {
+    max-width: 88rem;
+}
+
+.home-about-img {
+    background-size: cover;
+}
+
+.testimonial-slider-title {
+    font-size: 8px;
+    color: #83755E;
+}
+
+.slider-test-text {
+    font-family: 'Newsreader', serif;
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 1.1;
+    font-style: italic;
+    color: #942308;
+}
+
+.testimonial-slider-name {
+    font-size: 8px;
+    color: #83755E;
+}
+
+.home-testimonial-slider-paragraph {
+    color: #413B2F;
+}
+
+.testimonial-swiper .swiper-slide-visible {
+    opacity: 0 !important;
+}
+
+.testimonial-swiper .swiper-slide-active {
+    opacity: 1 !important;
+}
+
+.card.active {
+	height: 870px;
+}
+
+@media (min-width: 416px) {
+	.package-name {
+        font-size: 16px;
+	}
+	.card.active {
+		height: 680px;
+	}
+}
+
+@media (min-width: 576px) {
+    .card.active {
+		height: 600px;
+	}
+}
+
+@media (max-width: 576px) {
+    .slider-test-text {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 768px) {
+    .slider-poster-image {
+		min-height: 476px;
+		max-height: 476px;
+		margin-left: -50px;
+		transform: translateX(100px);
+	}
+	.package-box {
+		width: 60px;
+	}
+	.package-title-box {
+		width: 120px;
+	}
+	.package-num {
+		font-size: 48px;
+	}
+	.package-name {
+		font-family: 'commuters-sans', sans-serif;
+		font-size: 28px;
+		transform: rotate(90deg) translateY(356px);
+		width: 763px;
+		padding-left: 375px;
+		letter-spacing: 4px;
+	}
+	.package-description {
+		min-width: 660px;
+		padding-right: 315px;
+	}
+	.testimonial-swiper::before {
+        height: 150px;
+        width: 55px;
+    }
+    .testimonial-swiper::after {
+        height: 150px;
+        width: 55px;
+    }
+	.card.active {
+		height: unset;
+	}
+}
+
+@media (min-width: 992px) {
+    .slider-test-text {
+        font-size: 32px;
+    }
+    .testimonial-swiper::before {
+        height: 195px;
+        width: 100px;
+    }
+    .testimonial-swiper::after {
+        height: 195px;
+        width: 100px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hero-video-box {
+		height: auto;
+	}
+	.hero-video {
+		height: auto;
+		max-height: 800px;
+	}
+	.package-description {
+		min-width: 500px;
+		padding-right: 50px;
+	}
+}
+
+@media (min-width: 1440px) {
+    
+}
+
+@media (min-width: 1600px) {
+	.hero-video {
+		max-height: 1200px;
+	}
+	.home-slider-section {
+		max-width: 1800px;
+	}
+	.wedding-slider-title {
+		font-size: 120px;
+		line-height: 1.1 !important;
+		padding-bottom: 50px;
+	}
+	.wedding-slider-couple {
+		font-size: 70px;
+	}
+	.wedding-slider-location-tag {
+		font-size: 16px;
+	}
+	.wedding-slider-location {
+		font-size: 35px;
+		padding: 12px 0 12px 0;
+	}
+	.wedding-slider-description {
+		font-size: 24px;
+		line-height: 1.2;
+	}
+	.wedding-slider-bullets-button {
+		font-size: 16px;
+	}
+	.swiper-fraction {
+		font-size: 16px;
+	}
+	.slider-poster-image {
+		transform: translateX(100px);
+	}
+	.package-section {
+		max-width: 1600px;
+	}
+	.package-section-title {
+		font-size: 80px;
+	}
+	.package-section-paragraph {
+		font-size: 24px;
+		line-height: 1.2;
+	}
+	.package-section-button .text-button {
+		font-size: 16px;
+	}
+	.outside-package-section {
+		background: linear-gradient(90deg, #f4ebe6 50%, #2a0a02 50%);
+	}
+	.package-section {
+		margin-right: auto;
+	}
+	.package-accordion-container {
+		background-color: #f4ebe6;
+	}
+	.package-description {
+		min-width: 600px;
+		padding-right: 50px;
+	}
+	.testimonial-slider {
+        max-width: 1770px;
+    }
+    .slider-test-text {
+        font-size: 40px;
+    }
+    .home-testimonial-slider-paragraph {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+    .testimonial-cta .text-button {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 2000px) {
+    
+}

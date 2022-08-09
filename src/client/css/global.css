@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+@import url("https://use.typekit.net/evq5ixf.css");
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/effect-fade";
+@import "img-lightbox/css/img-lightbox.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    background-color: #f4ebe6;
+    line-height: 1;
+}
+
+body {
+  transition: 0.25s;
+}
+
+h1 {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+h3 {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+h4 {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+h5 {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+h6 {
+  font-family: 'Newsreader', serif;
+}
+
+p {
+  font-family: 'Newsreader', serif;
+  font-weight: 100;
+}
+
+a {
+  
+}
+
+button {
+
+}
+
+ul {
+
+}
+
+ol {
+
+}
+
+li {
+  
+}
+
+address {
+
+}
+
+blockquote {
+
+}
+
+code {
+
+}
+
+label {
+  font-family: 'commuters-sans', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px !important;
+  color: #942308 !important;
+}
+
+.cog-label {
+  font-family: 'commuters-sans', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px !important;
+  color: #942308 !important;
+}
+
+input {
+  padding: 12px 0 12px 0;
+  border-bottom: 2px solid #942308;
+  background-color: transparent;
+  font-family: 'commuters-sans', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px !important;
+  color: #942308 !important;
+}
+
+input::placeholder {
+  font-family: 'commuters-sans', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px !important;
+  color: #942308 !important;
+  opacity: 0.2;
+}
+
+textarea {
+  padding: 12px 0 12px 0;
+  border-bottom: 2px solid #942308;
+  background-color: transparent;
+  font-family: 'commuters-sans', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px !important;
+  color: #942308 !important;
+}
+
+textarea::placeholder {
+  font-family: 'commuters-sans', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px !important;
+  color: #942308 !important;
+  opacity: 0.2;
+}
+
+select {
+  padding: 12px 0 12px 0;
+  border-bottom: 2px solid #942308;
+  background-color: transparent;
+  font-family: 'commuters-sans', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px !important;
+  color: #942308 !important;
+}
+
+.cog-button {
+  font-family: 'commuters-sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1.1;
+  color: #942308;
+  border: 1px solid #942308;
+  padding: 9px 28px 7px 28px;
+  transition: 0.25s;
+}
+
+.cog-button:hover {
+  background-color: #942308;
+  color: #EADFD7;
+  transition: 0.25s;
+}
+
+img {
+  
+}
+
+.tag {
+  font-family: 'commuters-sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+[x-cloak] { 
+    display: none !important; 
+}
+
+.text-button {
+  font-family: 'commuters-sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1.1;
+}
+
+.outline-button {
+  font-family: 'commuters-sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1.1;
+  border: 1px solid #EADFD7;
+  padding: 9px 28px 7px 28px;
+  transition: 0.25s;
+}
+
+.outline-button:hover {
+  background-color: #EADFD7;
+  color: #942308;
+  transition: 0.25s;
+}
+
+.red-outline-button {
+  font-family: 'commuters-sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  line-height: 1.1;
+  border: 1px solid #942308;
+  color: #942308;
+  padding: 9px 28px 7px 28px;
+  transition: 0.25s;
+}
+
+.red-outline-button:hover {
+  background-color: #942308;
+  color: #EADFD7;
+  transition: 0.25s;
+}
+
+.package-1 {
+  background-color: #C42E0B;
+}
+.package-2 {
+  background-color: #942308;
+}
+.package-3 {
+  background-color: #5F1605;
+}
+.package-4 {
+  background-color: #2A0A02;
+}
+.package-5 {
+  background-color: #000000;
+}
+
+.modal-overlay {
+  background-color: rgba(65, 59, 47, 0.50);
+}
+
+.new-site-notice-modal {
+  background-color: #FCFAF8;
+}
+
+.new-site-notice-title {
+  font-family: 'commuters-sans', sans-serif;
+  font-size: 22px;
+  font-weight: 100;
+  color: #413B2F;
+}
+
+.open-quote {
+  background-image: url('https://inside.parosfilms.com/wp-content/uploads/2022/04/open-testimonial.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.close-quote {
+  background-image: url('https://inside.parosfilms.com/wp-content/uploads/2022/04/close-testimonial.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.launch-vid {
+  height: 300px;
+}
+
+.package-list li {
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+}
+
+@media (min-width: 768px) {
+  .launch-vid {
+    height: 283px;
+  }
+}

@@ -1,0 +1,228 @@
+---
+layout: base.njk
+---
+
+{% set agreement = [] %}
+{% for item in globalData %}
+    {% if item.title == "Agreement" %}
+        {% set agreement = (agreement.push({text: item.acf.text}), agreement) %}
+    {% endif %}
+{% endfor %}
+
+<div class="relative pt-40 z-20">
+    <a href="">
+        <h1 class="w-full max-w-7xl text-5xl md:text-7xl text-red-500 mx-auto px-6 xxl:px-0">{{ client.acf.spouse_one }} & {{ client.acf.spouse_two }}</h1>
+        <hr class="w-full mb-3 pre-footer-title-line" />
+        <hr class="w-full pre-footer-title-line" />
+    </a>
+</div>
+
+{% include "global/inner-bk-img.html" %}
+
+<style>
+
+</style>
+
+<div class="relative pt-12 px-6 z-20" x-data="{ detailsTrig: true, agreementTrig: false, paymentTrig: false, filesTrig: false }">
+    <div class="flex flex-wrap max-w-7xl mx-auto client-trigger-box">
+        <h4 class="w-full md:w-auto text-base text-red-500 not-italic py-3 md:py-0 mb-6 md:mb-0 md:mr-10 tag portal-tab" x-on:click="detailsTrig = true, agreementTrig = false, paymentTrig = false, filesTrig = false" :class="{ 'active-tab': detailsTrig }">Details</h4>
+        <h4 class="w-full md:w-auto text-base text-red-500 not-italic py-3 md:py-0 mb-6 md:mb-0 md:mr-10 tag portal-tab" x-on:click="detailsTrig = false, agreementTrig = true, paymentTrig = false, filesTrig = false" :class="{ 'active-tab': agreementTrig }">Agreement</h4>
+        <h4 class="w-full md:w-auto text-base text-red-500 not-italic py-3 md:py-0 mb-6 md:mb-0 md:mr-10 tag portal-tab" x-on:click="detailsTrig = false, agreementTrig = false, paymentTrig = true, filesTrig = false" :class="{ 'active-tab': paymentTrig }">Payment</h4>
+        <h4 class="w-full md:w-auto text-base text-red-500 not-italic py-3 md:py-0 mb-6 md:mb-0 tag portal-tab" x-on:click="detailsTrig = false, agreementTrig = false, paymentTrig = false, filesTrig = true" :class="{ 'active-tab': filesTrig }">Files</h4>
+    </div>
+    <div class="max-w-7xl mx-auto" x-show="detailsTrig" x-cloak>
+        <h5 class="text-sm text-black-800 not-italic whitespace-pre-line py-12 tag">Thank you so much for your interest in having Paros Films for your big day!</h5>
+        <div class="flex flex-wrap">
+            <div class="w-full lg:w-5/12">
+                <div class="pb-12 sm:pb-6">
+                    <h6 class="pb-2 portal-info-title">Bride/Groom's Name</h6>
+                    <h6 class="portal-info">{{ client.acf.spouse_one }}</h6>
+                </div>
+                <div class="pb-12 sm:pb-6">
+                    <h6 class="pb-2 portal-info-title">Bride/Groom's Name</h6>
+                    <h6 class="portal-info">{{ client.acf.spouse_two }}</h6>
+                </div>
+                <div class="pb-12 sm:pb-6">
+                    <h6 class="pb-2 portal-info-title">Wedding Date</h6>
+                    <h6 class="portal-info">{{ client.acf.wedding_date }}</h6>
+                </div>
+                <div class="pb-12 sm:pb-6">
+                    <h6 class="pb-2 portal-info-title">Venue</h6>
+                    <h6 class="portal-info">{{ client.acf.venue }}</h6>
+                </div>
+                <h6 class="pb-2 portal-info-title">Package</h6>
+                <div id="package" class="portal-info pb-10">{{ client.acf.package }}</div>
+                {% if client.acf.total_amount_owed %}
+                <div class="pb-8">
+                    <h6 class="pb-2 portal-info-title">Total Package Amount</h6>
+                    <h6 class="portal-info">${{ client.acf.total_amount_owed }}</h6>
+                </div>
+                {% endif %}
+                <h6 class="pb-2 portal-info-title">Included with package:</h6>
+                <div id="bronze-inclusions" class="hidden portal-info pb-8">
+                    {% for item in packages %}
+                        {% if item.title == "Bronze Package" %}
+                            <ul class="list-disc pl-4">
+                                {% for itemTwo in item.inclusions %}
+                                    <li class="portal-info pb-4">{{ itemTwo.inclusion }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div id="silver-inclusions" class="hidden portal-info pb-8">
+                    {% for item in packages %}
+                        {% if item.title == "Silver Package" %}
+                            <ul class="list-disc pl-4">
+                                {% for itemTwo in item.inclusions %}
+                                    <li class="portal-info pb-4">{{ itemTwo.inclusion }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div id="gold-inclusions" class="hidden portal-info pb-8">
+                    {% for item in packages %}
+                        {% if item.title == "Gold Package" %}
+                            <ul class="list-disc pl-4">
+                                {% for itemTwo in item.inclusions %}
+                                    <li class="portal-info pb-4">{{ itemTwo.inclusion }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div id="platinum-inclusions" class="hidden portal-info pb-8">
+                    {% for item in packages %}
+                        {% if item.title == "Platinum Package" %}
+                            <ul class="list-disc pl-4">
+                                {% for itemTwo in item.inclusions %}
+                                    <li class="portal-info pb-4">{{ itemTwo.inclusion }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% if client.acf.add_ons %}
+                <div class="pb-16">
+                    <h6 class="pb-4 portal-info-title">Add-Ons</h6>
+                    <ul class="list-disc pl-4">
+                        {% for item in client.acf.add_ons %}
+                            <li class="portal-info pb-4">{{ item.add_on }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <!-- <h6 class="pb-2 portal-info-title">Included Hours</h6>
+                <div id="package-hours" class="portal-info pb-8"></div> -->
+                {% if client.videographers.length > 0 %}
+                <h6 class="portal-info-title pb-4">Videographer(s)</h6>
+                <div class="grid grid-cols-2 gap-12 pb-16">
+                    {% for item in client.videographers %}
+                        <div class="">
+                            <img class="w-48 lg:w-32 xl:w-48" src="{{ item.headshot.url }}" />
+                            <div class="text-2xl italic videographer-name pt-3">{{ item.name }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="w-full lg:w-7/12">
+                <h6 class="pb-4 portal-info-title">Need To Know</h6>
+                <script src="https://www.cognitoforms.com/f/seamless.js" data-key="IG83lPQs7UKU2FDeP--HlA" data-form="35"></script>
+            </div>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto pt-6 whitespace-pre-line" x-show="agreementTrig" x-cloak>
+        <div class="leading-loose whitespace-pre-line">{{ agreement[0].text | safe }}</div>
+        <div class="leading-loose whitespace-pre-line">{{ client.acf.agreement_amendments | safe }}</div>
+    </div>
+    <div class="max-w-7xl mx-auto" x-show="paymentTrig" x-cloak>
+        <div class="lg:grid grid-cols-2 gap-24">
+            <div class="pt-10">
+                <div id="deposit-payment-status" class="text-black-800 desposit-status">{% if client.acf.deposit_paid_status == true %}Deposit: Paid{% else %}<div id="deposit-pay-status-quick-check">Deposit: Pending</div>{% endif %}</div>
+                <h2 class="text-2xl text-red-500 pb-8 file-submit-title">Remainder Balance due: {{ client.acf.remaining_balance_due_date }}</h2>
+            </div>
+            <div class="pt-10">
+                {% if client.acf.deposit_paid_status == true %}
+                    {% else %}
+                    <div id="deposit-pay-status-quick-check-two">
+                        <h2 class="text-2xl text-red-500 pb-8 file-submit-title">Deposit Invoice</h2>
+                        <a href="{{ client.acf.deposit_link }}" target="_blank" class="">
+                            <button class="red-outline-button">View</button>
+                        </a>
+                    </div>
+                {% endif %}
+                <h2 class="text-2xl text-red-500 py-8 file-submit-title">Remaining Balance Invoice</h2>
+                <a href="{{ client.acf.remaining_balance_link }}" target="_blank" class="">
+                    <button class="red-outline-button">View</button>
+                </a>
+                <h4 class="text-lg text-black-800 pt-8">Due: {{ client.acf.remaining_balance_due_date }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto" x-show="filesTrig" x-cloak>
+        <div class="lg:grid grid-cols-2 gap-24">
+            <div class="">
+                {% if client.acf.highlight_film %}
+                    <iframe class="py-10" width="100%" height="350" src="{{ client.acf.highlight_film | replace('youtu.be/', 'www.youtube.com/embed/') }}" title="Highlight Film" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen modestbranding='1'></iframe>
+                {% else %}
+                    <h2 class="text-sm text-black-800 not-italic whitespace-pre-line py-12 tag">When your wedding is complete - this is where you'll find all your files!</h2>
+                    <div class="py-56"></div>
+                {% endif %}
+            </div>
+            {% if client.acf.highlight_film %}
+            <div class="pt-10">
+                <ul>
+                    {% for item in client.acf.downloads %}
+                    <li>
+                        <a href="{{ item.link }}" class="flex items-center justify-between mb-8 px-8 pt-6 pb-5 download-link" target="_blank">
+                            <h6 class="text-sm tag">{{ item.name_of_download }}</h6>
+                            <svg class="w-4 download-icon" fill="#942308" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.8 309.8l-176 165.9C199.7 478.6 195.9 480 192 480s-7.719-1.426-10.77-4.31l-176-165.9C-1.297 303.6-1.781 293.1 4.156 286.3c5.953-6.838 16.09-7.259 22.61-1.134L176 425.9V48.59c0-9.171 7.156-16.59 15.1-16.59S208 39.42 208 48.59v377.3l149.2-140.7c6.516-6.125 16.66-5.704 22.61 1.134C385.8 293.1 385.3 303.6 378.8 309.8z"/></svg>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<script>
+const packageText = document.getElementById('package').innerText;
+const inclusionsBronze = document.getElementById('bronze-inclusions');
+const inclusionsSilver = document.getElementById('silver-inclusions');
+const inclusionsGold = document.getElementById('gold-inclusions');
+const inclusionsPlat = document.getElementById('platinum-inclusions');
+
+console.log(packageText);
+
+if (packageText == "Bronze Package") {
+    inclusionsBronze.classList.remove('hidden');
+} else if (packageText == "Silver Package") {
+    inclusionsSilver.classList.remove('hidden');
+} else if (packageText == "Gold Package") {
+    inclusionsGold.classList.remove('hidden');
+} else if (packageText == "Platnium Package") {
+    inclusionsPlat.classList.remove('hidden');
+}
+
+const paidDeposit = localStorage.getItem('depositStatus');
+const depositPayStatusQuick = document.getElementById('deposit-pay-status-quick-check');
+const depositPayStatusQuickTwo = document.getElementById('deposit-pay-status-quick-check-two');
+
+if (paidDeposit == 'Paid') {
+    depositPayStatusQuick.innerText = 'Deposit: Paid';
+    depositPayStatusQuickTwo.style.display = "none";
+} else {
+    
+}
+
+
+</script>
+
+
+
+

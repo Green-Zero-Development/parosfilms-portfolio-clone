@@ -1,0 +1,10 @@
+---
+layout: layouts/wedding-single.njk
+pagination:
+    data: weddings
+    size: 1
+    alias: wedding
+eleventyComputed:
+  yoastHead: "{{ wedding.yoast|safe }}"
+permalink: /weddings/{{ wedding.slug }}/index.html
+---

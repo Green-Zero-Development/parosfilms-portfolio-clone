@@ -1,0 +1,1 @@
+module.exports = { baseUrl: "https://inside.parosfilms.com", apiUrl: "https://inside.parosfilms.com/wp-content/plugins/custom-data-endpoint/data", cacheInterval: '1m' }

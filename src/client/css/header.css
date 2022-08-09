@@ -1,0 +1,195 @@
+.header-container {
+  position: fixed;
+  background-color: #edf2f7;
+  align-items: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  z-index: 996;
+  transition: .25s;
+}
+
+.is-sticky {
+  position: fixed !important;
+}
+
+.is-sticky-jump-fix {
+  margin-top: 0px !important;
+}
+
+.header-scroll-translate {
+  transform: translateY(-104.094px) !important;
+}
+
+.desktop-nav {
+  font-family: commuters-sans, sans-serif;
+  color: #942308;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  text-align: right;
+  transition: 0.25s;
+}
+
+.desktop-nav-item:hover {
+  text-decoration: underline;
+  transition: 0.25s;
+}
+
+.scroll-menu {
+  display: none;
+  
+  background-color: #EADFD7;
+  transition: 0.25s;
+}
+
+.scroll-menu-logo {
+  max-width: 180px;
+}
+
+.mega-menu-max-width {
+  max-width: 1512px;
+  margin: auto;
+}
+
+.mega-menu {
+  background-color: #942308;
+  height: 100%;
+}
+
+.mega-menu::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://inside.parosfilms.com/wp-content/uploads/2022/03/BHLYEd.webp');
+  background-repeat: no-repeat;
+  pointer-events: none;
+  background-size: contain;
+  background-position: bottom right;
+}
+
+.mega-menu-item {
+  font-family: commuters-sans, sans-serif;
+  color: #EADFD7;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  line-height: 2.0;
+  font-style: normal;
+  transition: 0.25s;
+}
+
+.mega-menu-item:hover {
+  text-decoration: underline;
+  transition: 0.25s;
+}
+
+.mega-menu-title {
+  font-family: commuters-sans, sans-serif;
+  color: #EADFD7;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  transition: 0.25s;
+}
+
+.mega-menu-title:hover {
+  text-decoration: underline;
+  transition: 0.25s;
+}
+
+.mega-menu-lg-item {
+  font-family: 'Newsreader', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 45px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: #EADFD7;
+}
+
+.mega-menu-lg-item:hover {
+  text-decoration: underline;
+  transition: 0.25s;
+}
+
+.mobile-menu {
+  background-color: #942308;
+  z-index: 998;
+}
+
+.mobile-items {
+  position: relative;
+  z-index: 998;
+}
+
+.mobile-menu-single {
+  color: #000000 !important;
+  padding-bottom: 0px !important;
+}
+
+.mobile-icon-active {
+  
+}
+
+.mobile-menu-open {
+  z-index: 999;
+}
+
+.mobile-menu-close {
+  z-index: 999;
+}
+
+.mobile-menu-single {
+  font-family: 'Newsreader', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 48px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: #FCFAF8 !important;
+}
+
+.header-container li {
+  color: #000000;
+}
+
+@media (min-width: '416px') {
+   
+}
+
+@media (min-width: '576px') {
+    
+}
+
+@media (min-width: 768px) {
+  .scroll-menu {
+    display: flex !important;
+  }
+  
+}
+
+@media (min-width: '992px') {
+    
+}
+
+@media (min-width: '1200px') {
+  .scroll-menu {
+    transform: translateY(-56px);
+  }
+  .header-scroll-translate {
+    transform: translateY(-56.0938px,) !important;
+  }
+}
+
+@media (min-width: '1440px') {
+    
+}
+
+@media (min-width: '2000px') {
+    
+}

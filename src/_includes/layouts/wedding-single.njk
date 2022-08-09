@@ -1,0 +1,210 @@
+---
+layout: base.njk
+---
+
+<link rel="stylesheet" href="https://unpkg.com/img-lightbox@latest/css/img-lightbox.css">
+
+<style>
+    .wedding-single-hero {
+        background-image: url('{{ wedding.acf.listing_page_information.image.url }}');
+    }
+    .wedding-single-vid-icon {
+        transition: 0.25s;
+    }
+    .wedding-single-vid-icon:hover {
+        fill: #83755E;
+        cursor: pointer;
+        transition: 0.25s;
+    }
+    .yt-vid {
+        height: 320px;
+    }
+    .img-lightbox {
+        background-color: rgba(148, 35, 8, 0.75);
+    }
+    .wedding-video-trigger {
+        top: 500px;
+    }
+    @media (min-width: 768px) {
+        .yt-vid {
+            height: 450px;
+        }
+    }
+    @media (min-width: 992px) {
+        .yt-vid {
+            height: 550px;
+        }
+    }
+    @media (min-width: 1200px) {
+        .yt-vid {
+            height: 744px;
+        }
+    }
+    @media (min-width: 1200px) {
+        .wedding-video-trigger {
+            top: 600px;
+        }
+        .yt-vid {
+            height: 744px;
+        }
+    }
+    @media (min-width: 1440px) {
+        .wedding-video-trigger {
+            top: 650px;
+        }
+    }
+</style>
+
+{% include "global/inner-bk-img.html" %}
+
+<div class="relative w-full bg-cover bg-center -mt-72 z-20 wedding-single-hero">
+    <div class="py-80"></div>
+    <div class="py-20"></div>
+</div>
+
+<div class="absolute right-0 mr-6 md:mr-12 z-50 wedding-video-trigger" x-data="{ open{{ wedding.acf.listing_page_information.image.ID }}: false }">
+    <div class="" x-on:click="open{{ wedding.acf.listing_page_information.image.ID }} = true">
+        <svg class="wedding-single-vid-icon" fill="#942308" width="66" height="67" viewBox="0 0 66 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M65.5 33.6024C65.5 51.3436 50.9545 65.7352 33 65.7352C15.0455 65.7352 0.5 51.3436 0.5 33.6024C0.5 15.8611 15.0455 1.46948 33 1.46948C50.9545 1.46948 65.5 15.8611 65.5 33.6024Z" stroke="#EADFD7"/>
+            <path d="M29.3622 33.8587L29.3622 22.8373L40.5076 33.8587L29.3622 44.8801V33.8587Z" stroke="#EADFD7"/>
+        </svg>
+    </div>
+    <div class="relative flex justify-center z-50">
+        <!-- Modal -->
+        <div
+            x-show="open{{ wedding.acf.listing_page_information.image.ID }}"
+            style="display: none"
+            x-on:keydown.escape.prevent.stop="open{{ wedding.acf.listing_page_information.image.ID }} = false"
+            role="dialog"
+            aria-modal="true"
+            x-id="['modal-title']"
+            :aria-labelledby="$id('modal-title')"
+            class="fixed inset-0 overflow-y-auto z-50"
+        >
+            <!-- Overlay -->
+            <div x-show="open{{ wedding.acf.listing_page_information.image.ID }}" x-transition.opacity class="fixed inset-0 z-50 modal-overlay"></div>
+        
+            <!-- Panel -->
+            <div
+                x-show="open{{ wedding.acf.listing_page_information.image.ID }}" x-transition
+                x-on:click="open{{ wedding.acf.listing_page_information.image.ID }} = false"
+                class="relative min-h-screen flex items-center justify-center p-4 z-50 modal-overlay"
+            >
+                <div
+                    x-on:click.stop
+                    x-trap.noscroll.inert="open{{ wedding.acf.listing_page_information.image.ID }}"
+                    class="relative max-w-8xl w-full md:w-11/12 bg-white border border-black rounded-lg shadow-lg overflow-y-auto md:-mt-8 mx-auto"
+                >
+                <iframe class="yt-vid" width="100%" src="{{ wedding.acf.full_video_link | replace('youtu.be/', 'www.youtube.com/embed/') }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen modestbranding='1'></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-12 items-end justify-items-center max-w-8xl mx-auto pt-24 px-6">
+    <div class="col-span-12 md:col-span-7 w-full pb-8 md:pb-0">
+        <h1 class="text-4xl xl:text-6xl text-red-500 pb-1">{{ wedding.acf.spouse_one }} & {{ wedding.acf.spouse_two }}</h1>
+        <p class="text-base text-black-800 whitespace-pre-line">{{ wedding.acf.short_description }}</p>
+    </div>
+    <div class="col-span-12 md:col-span-5 w-full md:w-auto">
+        <div class="pb-4">
+            <h6 class="text-2xs text-black-800 pb-1 tag">Location</h6>
+            <h4 class="text-3xl xl:text-5xl text-red-500">{{ wedding.acf.ceremony_information.location }}</h4>
+        </div>
+        <div class="">
+            <h6 class="text-2xs text-black-800 pb-1 tag">Venue</h6>
+            <h4 class="text-3xl xl:text-5xl text-red-500">{{ wedding.acf.ceremony_information.venue }}</h4>
+        </div>
+    </div>
+</div>
+
+<div class="relative lg:grid grid-cols-12 gap-10 max-w-8xl mx-auto pt-32 px-6 z-10 wedding-stills">
+    {% for item in wedding.acf.gallery_group %}
+        {% if loop.index == 1 %}
+            {% for item2 in item.gallery %}
+                {% if loop.index == 1 %}
+                    <a href="{{ item2.url }}" class="col-span-9 wedding-still-img" aria-hidden="true" rel="lightbox">
+                        <img class="pb-6 lg:pb-0" src="{{ item2.url }}" />
+                    </a>
+                {% endif %}
+            {% endfor %}
+            <div class="lg:grid gap-10 col-span-3">
+                {% for item2 in item.gallery %}
+                    {% if loop.index == 2 %}
+                        <a href="{{ item2.url }}" class="row-span-1 wedding-still-img" aria-hidden="true" rel="lightbox">
+                            <img class="pb-6 lg:pb-0" src="{{ item2.url }}" />
+                        </a>
+                    {% endif %}
+                    {% if loop.index == 3 %}
+                        <a href="{{ item2.url }}" class="row-span-1 wedding-still-img" aria-hidden="true" rel="lightbox">
+                            <img class="pb-6 lg:pb-0" src="{{ item2.url }}" />
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                <h6 class="row-span-1 text-black-800">{{ item.caption }}</h6>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div class="relative lg:grid grid-cols-12 gap-10 max-w-8xl mx-auto pt-16 px-6 z-10 wedding-stills">
+    {% for item in wedding.acf.gallery_group %}
+        {% if loop.index == 2 %}
+            <div class="lg:grid gap-10 col-span-3">
+                {% for item2 in item.gallery %}
+                    {% if loop.index == 2 %}
+                        <a href="{{ item2.url }}" class="row-span-1 wedding-still-img" aria-hidden="true" rel="lightbox">
+                            <img class="pb-6 lg:pb-0" src="{{ item2.url }}" />
+                        </a>
+                    {% endif %}
+                    {% if loop.index == 3 %}
+                        <a href="{{ item2.url }}" class="row-span-1 wedding-still-img" aria-hidden="true" rel="lightbox">
+                            <img class="pb-6 lg:pb-0" src="{{ item2.url }}" />
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                <h6 class="hidden lg:block row-span-1">{{ item.caption }}</h6>
+            </div>
+            {% for item2 in item.gallery %}
+                {% if loop.index == 1 %}
+                    <a href="{{ item2.url }}" class="col-span-9 wedding-still-img" aria-hidden="true" rel="lightbox">
+                        <img class="pb-6 lg:pb-0" src="{{ item2.url }}" />
+                    </a>
+                {% endif %}
+            {% endfor %}
+            <h6 class="lg:hidden row-span-1 text-black-800">{{ item.caption }}</h6>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<style>
+    .wedding-single-tag {
+        color: #002D3E !important;
+    }
+</style>
+
+<div class="md:grid grid-cols-4 gap-10 max-w-8xl -mb-40 mx-auto pt-32 px-6">
+    <!-- <div class="pb-10 md:pb-0">
+        {% if wedding.acf.ceremony_information.videographer %}
+            <h6 class="text-xs pb-4 wedding-single-tag tag">Videographer : {{ wedding.acf.ceremony_information.videographer }}</h6>
+        {% endif %}
+        {% if wedding.acf.ceremony_information.editor %}
+            <h6 class="text-xs pb-4 wedding-single-tag tag">Editor : {{ wedding.acf.ceremony_information.editor }}</h6>
+        {% endif %}
+    </div>
+    <div class="col-span-2 pb-10 md:pb-0">
+        {% if wedding.acf.ceremony_information.songs %}
+            <div class="text-xs pb-4 wedding-single-tag tag">Song(s) : {{ wedding.acf.ceremony_information.songs }}</div>
+        {% endif %}
+        {% if wedding.acf.ceremony_information.artists %}
+            <div class="text-xs pb-4 wedding-single-tag tag">Artist(s) : {{ wedding.acf.ceremony_information.artists }}</div>
+        {% endif %}
+    </div> -->
+</div>
+
+<script src="https://unpkg.com/img-lightbox@latest/js/img-lightbox.js"></script>
+
+<script>
+imgLightbox("wedding-still-img");
+</script>

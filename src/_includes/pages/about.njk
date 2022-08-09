@@ -1,0 +1,114 @@
+{% include "global/inner-bk-img.html" %}
+
+<div class="max-w-4xl mx-auto py-32 px-6 text-center">
+    <h1 class="text-5xl xs:text-6xl text-red-500 mx-auto pb-2">{{ wpage.acf.title }}</h1>
+    <p class="text-black-800 text-xl whitespace-pre-line">{{ wpage.acf.paragraph }}</p>
+</div>
+
+<style>
+    .people-title {
+
+    }
+    @media (min-width: 768px) {
+        .people-title {
+            width: 251px;
+            height: 276px;
+            font-size: 60px;
+            transform: rotate(270deg);
+        }
+    }
+    @media (min-width: 992px) {
+        .people-title {
+            width: 337px;
+            height: 360px;
+            font-size: 80px;
+        }
+    }
+</style>
+
+<div class="relative bg-red-500 z-20">
+    <div class="md:grid grid-cols-12 max-w-9xl mx-auto py-12 px-6">
+        <div class="col-span-1">
+            <h2 class="text-5xl text-cream-500 text-center md:text-left pb-8 md:pb-0 people-title">Our People</h2>
+        </div>
+        <div class="sm:grid grid-cols-12 gap-6 lg:gap-12 col-span-11">
+            {% for item in teamMembers | sortBy('weight') %}
+                <style>
+                    .headshot-{{ item.acf.headshot.ID }} {
+                        background-image: url('{{ item.acf.headshot.url }}');
+                    }
+                </style>
+                <div class="sm:col-span-6 lg:col-span-4 text-cream-500 pb-8">
+                    <div class="bg-cover bg-center py-80 sm:py-56 md:py-80 lg:py-56 xl:py-80 headshot-{{ item.acf.headshot.ID }}">
+
+                    </div>
+                    <h3 class="text-5xl pt-6">{{ item.acf.name }}</h3>
+                    <div class="text-2xs py-2 tag">{% for item2 in item.acf.titles %}{{ item2.title }}{% if loop.last !== true %} / {% endif %}{% endfor %}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<style>
+
+.places-weve-been-img {
+    background-image: url('{{ wpage.acf.places_we_have_filmed_section.image.url }}');
+}
+.locations-visited {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+}
+
+</style>
+
+<div class="flex flex-wrap items-start xl:items-center overflow-hidden max-w-8xl mx-auto pt-24 px-6">
+    <div class="relative w-full md:w-1/2 xl:w-7/12 bg-cover bg-center z-20 places-weve-been-img">
+        <div class="py-56"></div>
+    </div>
+    <div class="relative w-full md:w-1/2 xl:w-5/12 -mt-2 md:-mt-0 md:-ml-4 lg:-ml-7 z-30">
+        <div class="absolute top-0 left-0 w-40 h-24 sm:h-full open-quote"></div>
+        <div class="">
+            <div class="relative py-8 places-weve-been">
+                <h6 class="text-xs text-gold-600 text-center pb-2 tag">{{ wpage.acf.places_we_have_filmed_section.title }}</h6>
+                <div class="w-2/3 sm:w-4/5 text-red-500 text-lg lg:text-2xl text-center mx-auto locations-visited">
+                    {% for item in wpage.acf.places_we_have_filmed_section.places %}{{ item.place }}{% if loop.last !== true %} / {% endif %}{% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-0 right-0 w-40 h-24 sm:h-full ml-auto close-quote"></div>
+    </div>
+</div>
+
+<style>
+
+.places-we-want-img {
+    background-image: url('{{ wpage.acf.places_we_want_to_film_section.image.url }}');
+}
+
+.locations-visited {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+}
+
+</style>
+
+<div class="flex flex-wrap flex-col-reverse md:flex-row items-start xl:items-center overflow-hidden max-w-8xl -mb-40 mx-auto pt-24 px-6">
+    <div class="relative w-full md:w-1/2 xl:w-5/12 -mt-2 md:-mt-0 md:-mr-4 lg:-mr-7 z-30">
+        <div class="absolute top-0 left-0 w-40 h-24 sm:h-full open-quote"></div>
+        <div class="">
+            <div class="relative py-8 places-weve-been">
+                <h6 class="text-xs text-gold-600 text-center pb-2 tag">{{ wpage.acf.places_we_want_to_film_section.title }}</h6>
+                <div class="w-2/3 sm:w-4/5 text-red-500 text-lg lg:text-2xl text-center mx-auto locations-visited">
+                    {% for item in wpage.acf.places_we_want_to_film_section.places %}{{ item.place }}{% if loop.last !== true %} / {% endif %}{% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-0 right-0 w-40 h-24 sm:h-full ml-auto close-quote"></div>
+    </div>
+    <div class="relative w-full md:w-1/2 xl:w-7/12 bg-cover bg-center z-20 places-we-want-img">
+        <div class="py-56"></div>
+    </div>
+</div>

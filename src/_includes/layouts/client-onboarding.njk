@@ -1,0 +1,239 @@
+---
+layout: base.njk
+---
+
+{% set agreement = [] %}
+{% for item in globalData %}
+    {% if item.title == "Agreement" %}
+        {% set agreement = (agreement.push({text: item.acf.text}), agreement) %}
+    {% endif %}
+{% endfor %}
+
+<style>
+    .onboarding-step-line {
+        height: 2px;
+    }
+    .el-button span {
+        font-family: 'commuters-sans', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #942308;
+    }
+</style>
+
+{% include "global/inner-bk-img.html" %}
+
+<div class="relative max-w-6xl mx-auto pt-32 px-6">
+    <h1 class="text-5xl xs:text-8xl text-red-500 mx-auto pb-2 pr-12">Hello!</h1>
+    <p class="text-black-800 text-xs text-red-500 whitespace-pre-line tag">Thank you so much for your interest in having Paros Films for your big day! Here's a short list of what I need from you:</p>
+</div>
+
+<div class="relative lg:grid grid-cols-3 gap-8 max-w-6xl mx-auto pt-12 px-6">
+    <div id="step-1-trig" class="pb-12">
+        <div class="flex items-center">
+            <h6 class="w-24 text-xs text-red-500 tag">Step 1</h6>
+            <div class="w-full bg-red-500 onboarding-step-line">
+
+            </div>
+        </div>
+        <h2 class="text-3xl text-red-500 py-2">Agreement</h2>
+        <p class="text-2xs text-red-500 leading-normal tag">Read over the agreement below & fill out the short form</p>
+    </div>
+    <div id="step-2-trig" class="opacity-50 pb-12">
+        <div class="flex items-center">
+            <h6 class="w-24 text-xs text-red-500 tag">Step 2</h6>
+            <div class="w-full bg-red-500 onboarding-step-line">
+
+            </div>
+        </div>
+        <h2 class="text-3xl text-red-500 py-2">Deposit</h2>
+        <p class="text-2xs text-red-500 leading-normal tag">Pay the 50% deposit once the form is submitted</p>
+    </div>
+    <div id="step-3-trig" class="opacity-50">
+        <div class="flex items-center">
+            <h6 class="w-24 text-xs text-red-500 tag">Step 3</h6>
+        </div>
+        <h2 class="text-3xl text-red-500 pt-2 pb-1">After You're Done</h2>
+    </div>
+</div>
+
+
+<div class="">
+    <div id="step-1" class="relative max-w-6xl mx-auto pt-12 px-6 z-30">
+        <div class="leading-loose whitespace-pre-line">{{ agreement[0].text | safe }}</div>
+        <div class="leading-loose whitespace-pre-line">{{ client.acf.agreement_amendments | safe }}</div>
+        <div class="pb-12 sm:pb-6">
+            <h6 class="pb-2 portal-info-title">Package</h6>
+            <h6 class="portal-info">{{ client.acf.package }}</h6>
+        </div>
+        <div class="pb-12 sm:pb-6">
+            <h6 class="pb-2 portal-info-title">Total Package Amount</h6>
+            <h6 class="portal-info">${{ client.acf.total_amount_owed }}</h6>
+        </div>
+        <script src="https://www.cognitoforms.com/f/seamless.js" data-key="IG83lPQs7UKU2FDeP--HlA" data-form="33"></script>
+    </div>
+    <div id="step-2" class="hidden relative flex flex-wrap max-w-6xl mx-auto pt-12 px-6 z-30">
+        <h6 class="w-full text-xl text-red-500 tag pb-2">Deposit Directions:</h6>
+        <p class="text-xs text-red-500 whitespace-pre-line pb-8 tag">Click the button labeled "Pay your deposit" below. You will be redirected to Quickbooks in a seperate tab of your browser. Return here when you're done and click the "I have completed my payment" button to continue.</p>
+        <!-- <div id="ran-already-notice" class="hidden pb-8">
+            <p class="w-full text-lg text-red-500 pb-8">You've already checked on the status of your payment. Payment buttons on this page have been disabled. Please go to your client portal linked below.</p>
+            <a href="/clients/{{ client.slug }}">
+                <button class="red-outline-button">Go to my client portal</button>
+            </a>
+        </div> -->
+        <div id="step-2-payment-buttons" class="flex flex-wrap">
+            <a href="{{ client.acf.deposit_link }}" target="_blank" class="w-full mb-8">
+                <button class="red-outline-button">Pay your deposit</button>
+            </a>
+            <a href="/onboarding/{{ client.slug }}?step=3" id="i-have-completed-my-payment" class="w-full">
+                <button class="red-outline-button">I have completed my payment</button>
+            </a>
+        </div>
+    </div>
+    <div id="step-3" class="hidden relative flex flex-wrap max-w-6xl mx-auto pt-12 px-6 z-30">
+        <div id="ran-already-notice-step-three" class="w-full">
+            <p class="text-xs text-red-500 whitespace-pre-line pb-8 tag">Thank you for your payment!  Click the button below to access your super sweet portal.</p>
+        </div>
+        <a href="/clients/{{ client.slug }}">
+            <button class="red-outline-button">Go to my client portal</button>
+        </a>
+        <!-- <div id="fetch-notice" class="">
+            <p class="w-full text-lg text-black-800 pb-8">One moment - we are fetching your payment status!</p>
+        </div>
+        <div id="paid-notice" class="{% if client.acf.deposit_paid_status !== true %}hidden{% endif %}">
+            <p class="w-full text-lg text-black-800 pb-8">Thanks! Your deposit is paid in full! Here is a link to your client portal:</p>
+            <a href="/clients/{{ client.slug }}?deposit=paid">
+                <button class="red-outline-button">Go to my client portal</button>
+            </a>
+        </div>
+        <div id="not-paid-notice" class="hidden {% if client.acf.deposit_paid_status == true %}opacity-0 pointer-events-none{% endif %}">
+            <p class="w-full text-lg text-black-800 pb-8">Thanks! Either you've only paid part of your deposit, or there's a problem with our system. No problem! We'll check on your deposit status manually and update you promptly. Here is the link to your client portal:</p>
+            <a href="/clients/{{ client.slug }}">
+                <button class="red-outline-button">Go to my client portal</button>
+            </a>
+        </div> -->
+    </div>
+</div>
+
+<script>
+    let stepOneTrig = document.getElementById('step-1-trig');
+    let stepTwoTrig = document.getElementById('step-2-trig');
+    let stepThreeTrig = document.getElementById('step-3-trig');
+    let stepOneBox = document.getElementById('step-1');
+    let stepTwoBox = document.getElementById('step-2');
+    let stepThreeBox = document.getElementById('step-3');
+    let stepTwoPaymentButtons = document.getElementById('step-2-payment-buttons');
+    let paidDepositManual = {{ client.acf.deposit_paid_status }};
+    let alreadyRanCheckNotice = document.getElementById('ran-already-notice');
+    let alreadyRanCheckNoticeStepThree = document.getElementById('ran-already-notice-step-three');
+    let fetchNotice = document.getElementById('fetch-notice');
+    let paidNotice = document.getElementById('paid-notice');
+    let partialNotice = document.getElementById('not-paid-notice');
+    const paymentCheckRan = localStorage.getItem('paymentCheck');
+    const paidDeposit = localStorage.getItem('depositStatus');
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const setStep = urlParams.get('step');
+    if (setStep !== null) {
+        currentStep = setStep;
+        stepFunctions(currentStep)
+    } else {
+        currentStep = 1;
+        stepFunctions(currentStep)
+    }
+
+    function stepFunctions(currentStep) {
+        console.log(currentStep);
+        if (currentStep == 1) {
+            console.log('step 1 triggered');
+            let pageSlug = window.location.pathname.split('/');
+            let setSlugInput = setInterval(function () {
+                if (document.querySelector('#cog-0') === null) {
+
+                } else {
+                    let slugInput = document.querySelector('#cog-0');
+                    let slugInputBox = document.querySelector('.cog-field--6');
+                    let orgInputBox = document.querySelector('.cog-field--8');
+                    slugInputBox.style.opacity = '0';
+                    slugInputBox.style.pointerEvents = 'none';
+                    slugInputBox.style.height = '0px';
+                    orgInputBox.style.opacity = '0';
+                    orgInputBox.style.pointerEvents = 'none';
+                    orgInputBox.style.height = '0px';
+                    slugInput.value = pageSlug[2];
+                    clearInterval(setSlugInput);
+                }
+            }, 2000);
+        }
+        
+        if (currentStep == 2) {
+            console.log('step 2 triggered');
+            stepOneTrig.classList.add('opacity-50');
+            stepTwoTrig.classList.remove('opacity-50');
+            stepOneBox.classList.add('hidden');
+            stepTwoBox.classList.remove('hidden');
+            if (paymentCheckRan == "Ran") {
+                alreadyRanCheckNotice.classList.remove('hidden');
+                stepTwoPaymentButtons.classList.add('hidden');
+            } else {
+
+            }
+        }
+
+        if (currentStep == 3 || paidDepositManual == true) {
+            console.log('step 3 triggered');
+            stepOneTrig.classList.add('opacity-50');
+            stepThreeTrig.classList.remove('opacity-50');
+            stepOneBox.classList.add('hidden');
+            stepThreeBox.classList.remove('hidden');
+            // if (paymentCheckRan == "Ran") {
+            //     fetchNotice.classList.add('hidden');
+            //     alreadyRanCheckNoticeStepThree.classList.remove('hidden');
+            //     if (paidDeposit == 'Paid') {
+            //         fetchNotice.classList.add('hidden');
+            //         paidNotice.classList.remove('hidden');
+            //     } else {
+            //         fetchNotice.classList.add('hidden');
+            //         partialNotice.classList.remove('hidden');
+            //     }
+            // } else {
+            //     checkPaymentStatus();
+            //     localStorage.setItem('paymentCheck', 'Ran');
+            //     setTimeout(function() { 
+            //         if (paidNotice.classList.contains('hidden') == true) {
+            //             fetchNotice.classList.add('hidden');
+            //             partialNotice.classList.remove('hidden');
+            //         } else {
+                        
+            //         }
+            //     }, 8000);
+            // }
+        }
+    }
+
+    // function checkPaymentStatus() {
+    //     check_things = "https://hooks.zapier.com/hooks/catch/6739901/bk5p3kn?invoiceNum={{ client.acf.deposit_invoice_number }}";
+    //     var request = new XMLHttpRequest();
+    //     request.open("POST", check_things);
+    //     request.send();
+    //     setTimeout(function() { fetchPaymentChecks(); }, 5000);
+    //     console.log('deposit-check-trig');
+    // }
+
+    async function fetchPaymentChecks() {
+        let res = await fetch('https://inside.parosfilms.com/wp-content/plugins/custom-data-endpoint/data/posts.json');
+        let paymentCheckArray = await res.json();
+        for (let i = 0; i < paymentCheckArray.length; i++) {
+            if (paymentCheckArray[i].title == '{{ client.acf.deposit_invoice_number }}') {
+                fetchNotice.classList.add('hidden');
+                paidNotice.classList.remove('hidden');
+                localStorage.setItem('depositStatus', 'Paid');
+            } else {
+
+            }
+        }
+    }
+
+</script>

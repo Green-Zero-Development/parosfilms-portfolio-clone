@@ -1,0 +1,27 @@
+
+
+<style>
+    {% if wpage.title == "Vendor Submission" %}
+    footer {
+        padding-top: 400px !important;
+    }
+    .pre-footer-section {
+        display: none;
+    }
+    {% endif %}
+    .cog-heading {
+        font-size: 40px;
+        font-style: normal;
+        color: #413B2F;
+    }
+</style>
+
+<div class="lg:grid grid-cols-3 pt-40 max-w-8xl mx-auto px-6">
+    <div class="pb-32 lg:pb-0 lg:pr-12 xl:pr-32">
+        <h1 class="text-5xl text-red-500">{{ wpage.acf.title }}</h1>
+        <p class="text-lg pt-3 pb-6">{{ wpage.acf.paragraph }}</p>
+    </div>
+    <div id="contact-form" class="col-span-2">
+        <script src="https://www.cognitoforms.com/f/seamless.js" data-key="IG83lPQs7UKU2FDeP--HlA" data-form="38"></script>
+    </div>
+</div>

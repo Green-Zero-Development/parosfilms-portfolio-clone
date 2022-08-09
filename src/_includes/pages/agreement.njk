@@ -1,0 +1,10 @@
+{% set agreement = [] %}
+{% for item in globalData %}
+    {% if item.title == "Agreement" %}
+        {% set agreement = (agreement.push({text: item.acf.text}), agreement) %}
+    {% endif %}
+{% endfor %}
+
+<div class="relative max-w-6xl mx-auto pt-32 px-6 z-30">
+    <div class="leading-loose whitespace-pre-line">{{ agreement[0].text | safe }}</div>
+</div>

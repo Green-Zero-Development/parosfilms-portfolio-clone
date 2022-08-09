@@ -1,0 +1,103 @@
+.portal-tab {
+    cursor: pointer;
+}
+
+.active-tab {
+    border-bottom: 4px solid #942308;
+}
+
+.client-trigger-box {
+    border-bottom: 1px solid #942308;
+}
+
+.thank-you-notice {
+    font-family: 'Newsreader', serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.portal-info-title {
+    font-family: 'commuters-sans', sans-serif;
+    font-size: 12px;
+    padding-right: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #942308;
+}
+
+.portal-info {
+    font-family: 'commuters-sans', sans-serif;
+    font-size: 14px;
+    padding-right: 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #942308;
+}
+
+.pdf-agreement-text {
+    font-family: 'commuters-sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #942308;
+}
+
+.pdf-agreement-link {
+    font-family: 'commuters-sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #413B2F;
+}
+
+.pdf-agreement-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.videographer-name {
+    font-family: 'Newsreader', serif;
+    font-weight: 100;
+    color: #942308;
+}
+
+.file-submit-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.desposit-status {
+    font-family: 'commuters-sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.download-link {
+    border: 1px solid #942308;
+    color: #942308;
+    border-radius: 8px;
+    transition: 0.25s;
+}
+
+.download-link:hover {
+    background-color: #942308;
+    color: #EADFD7 !important;
+    transition: 0.25s;
+}
+
+.download-link:hover .download-icon {
+    fill: #EADFD7;
+}
+
+@media (min-width: 768px) {
+    .active-tab {
+        margin-bottom: -2px;
+    }
+}
